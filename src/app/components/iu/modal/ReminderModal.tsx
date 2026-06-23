@@ -6,8 +6,8 @@ export interface FacturaModalItem {
   id: string;
   codigoFactura: string;
   nombreCliente: string;
-  fechaVencimiento: string;
-  estadoActual: string;
+  visualState: string;
+  stateRemember: string;
 }
 
 interface ReminderModalProps {
@@ -51,17 +51,14 @@ export const ReminderModal = ({ isOpen, onClose, onConfirm, facturas }: Reminder
           
           <div className={styles.modal__list}>
             {facturas.map((fac) => {
-              const estadoCss = fac.estadoActual.toLowerCase();
+              const estadoCss = fac.stateRemember.toLowerCase();
               return (
                 <div key={fac.id} className={styles.invoiceItem}>
                   <div className={styles.invoiceItem__info}>
                     <span className={styles.invoiceItem__name}>{fac.nombreCliente}</span>
-                    <span className={styles.invoiceItem__details}>
-                      {fac.codigoFactura} &bull; Vence {fac.fechaVencimiento}
-                    </span>
                   </div>
                   <span className={`${tableStyles.badge} ${tableStyles[`badge--${estadoCss}`]}`}>
-                    {fac.estadoActual}
+                    {fac.visualState}
                   </span>
                 </div>
               );

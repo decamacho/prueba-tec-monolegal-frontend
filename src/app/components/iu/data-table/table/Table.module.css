@@ -62,6 +62,6 @@
   border: 1px solid currentColor;
   display: inline-block;
 }
-.badge--pagada { background-color: var(--color-success-bg); color: var(--color-success-text); }
-.badge--pendiente { background-color: var(--color-warning-bg); color: var(--color-warning-text); }
-.badge--vencida { background-color: var(--color-danger-bg); color: var(--color-danger-text); }
+.badge--primer { background-color: var(--color-success-bg); color: var(--color-success-text); }
+.badge--segundo { background-color: var(--color-warning-bg); color: var(--color-warning-text); }
+.badge--desactivado { background-color: var(--color-danger-bg); color: var(--color-danger-text); }
