@@ -1,0 +1,67 @@
+.wrapper {
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.table__thead {
+  background-color: transparent;
+}
+
+.table__th {
+  text-align: left;
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.table__tbody .table__tr {
+  transition: background-color 0.2s;
+}
+
+.table__tbody .table__tr:hover {
+  background-color: #f8fafc;
+}
+
+.table__td {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+  color: var(--color-text-main);
+}
+
+.table__infoLoad {
+  padding: var(--space-4);
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.table__tbody .table__tr:last-child .table__td {
+  border-bottom: none;
+}
+
+.badge {
+  padding: 4px var(--space-3);
+  border-radius: 12px;
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  border: 1px solid currentColor;
+  display: inline-block;
+}
+.badge--pagada { background-color: var(--color-success-bg); color: var(--color-success-text); }
+.badge--pendiente { background-color: var(--color-warning-bg); color: var(--color-warning-text); }
+.badge--vencida { background-color: var(--color-danger-bg); color: var(--color-danger-text); }

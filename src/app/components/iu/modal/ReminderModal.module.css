@@ -1,0 +1,216 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+  padding: var(--space-4);
+  box-sizing: border-box;
+}
+
+.modal {
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modal__headerContent {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.modal__iconBox {
+  width: 36px;
+  height: 36px;
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-lg);
+}
+
+.modal__titleGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__title {
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.modal__subtitle {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.modal__closeBtn {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: var(--text-lg);
+  padding: var(--space-1);
+}
+
+.modal__body {
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.modal__instruction {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.modal__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: var(--space-2);
+}
+
+.modal__list::-webkit-scrollbar { width: 6px; }
+.modal__list::-webkit-scrollbar-track { background: transparent; }
+.modal__list::-webkit-scrollbar-thumb { background-color: var(--color-border); border-radius: 4px; }
+
+.invoiceItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #f8fafb;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  gap: var(--space-2);
+}
+
+.invoiceItem__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.invoiceItem__name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-main);
+  line-height: 1.2;
+}
+
+.invoiceItem__details {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+.modal__footer {
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--space-3);
+  background-color: #fafbfc;
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+}
+
+.btn {
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-md);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  transition: all 0.2s;
+  border: none;
+  width: 100%;
+}
+
+.btn--cancel {
+  background-color: white;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-main);
+}
+
+.btn--submit {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    width: 90%;
+    max-width: 500px;
+  }
+
+  .modal__header {
+    padding: var(--space-5) var(--space-6);
+  }
+
+  .modal__iconBox {
+    width: 40px;
+    height: 40px;
+    font-size: var(--text-xl);
+  }
+
+  .modal__title {
+    font-size: var(--text-lg);
+  }
+
+  .modal__subtitle {
+    font-size: var(--text-sm);
+  }
+
+  .modal__body {
+    padding: var(--space-6);
+  }
+
+  .modal__list {
+    max-height: 240px;
+  }
+
+  .invoiceItem {
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .modal__footer {
+    padding: var(--space-4) var(--space-6);
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    width: auto;
+    padding: var(--space-2) var(--space-5);
+  }
+}

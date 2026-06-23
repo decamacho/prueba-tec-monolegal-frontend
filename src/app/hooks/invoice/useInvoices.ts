@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { InvoiceUseCases } from "../../application/usecases/InvoiceUseCases";
-import { invoiceRepository } from "../../infrastructure/repositories/InvoiceRepository";
+import { InvoiceUseCases } from "../../../application/usecases/InvoiceUseCases";
+import { invoiceRepository } from "../../../infrastructure/repositories/InvoiceRepository";
 
 const invoiceUseCases = new InvoiceUseCases(invoiceRepository);
 

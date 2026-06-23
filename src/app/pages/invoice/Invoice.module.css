@@ -1,0 +1,121 @@
+.invoice {
+  display: flex;
+  flex-direction: column;
+}
+
+.invoice__toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  width: 100%;
+}
+
+.invoice__filters {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+  width: 100%;
+}
+
+.invoice__filters::-webkit-scrollbar { height: 4px; }
+.invoice__filters::-webkit-scrollbar-track { background: transparent; }
+.invoice__filters::-webkit-scrollbar-thumb { background-color: var(--color-border); border-radius: 4px; }
+
+.invoice__filterBtn {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.invoice__filterBtn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.invoice__filterBtn--active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+.invoice__filterBtn--active:hover {
+  color: white;
+}
+
+.invoice__btnMasive {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 30%;
+}
+
+.invoice__btnMasive:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.invoice__btnRemember {
+  background-color: transparent;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.invoice__btnRemember:hover {
+  background-color: var(--color-success-bg);
+}
+
+.invoice__btnRemember--disabled {
+  border-color: var(--color-border);
+  color: var(--color-border);
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+.invoice__btnRemember--disabled:hover {
+  background-color: transparent;
+}
+
+@media (min-width: 768px) {
+  .invoice__toolbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .invoice__filters {
+    width: auto;
+    padding-bottom: 0;
+  }
+
+  .invoice__btnMasive {
+    width: auto;
+    padding: var(--space-2) var(--space-4);
+  }
+}
