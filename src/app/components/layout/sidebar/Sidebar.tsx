@@ -1,4 +1,3 @@
-// src/app/components/layout/Sidebar.tsx
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { 
@@ -10,17 +9,16 @@ import {
 } from '@ant-design/icons';
 import styles from './Sidebar.module.css';
 
+const MENU_ITEMS = [
+  { path: '/', label: 'Resumen', icon: <AppstoreOutlined /> },
+  { path: '/invoice', label: 'Facturas', icon: <FileTextOutlined /> },
+  { path: '/client', label: 'Clientes', icon: <TeamOutlined /> },
+];
+
 export const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  
   const [isOpen, setIsOpen] = useState(false);
-
-  const menuItems = [
-    { path: '/', label: 'Resumen', icon: <AppstoreOutlined /> },
-    { path: '/invoice', label: 'Facturas', icon: <FileTextOutlined /> },
-    { path: '/client', label: 'Clientes', icon: <TeamOutlined /> },
-  ];
 
   const handleNavigate = (path: string) => {
     navigate(path);
@@ -38,11 +36,17 @@ export const Sidebar = () => {
       </button>
 
       <div 
-        className={`${styles.sidebar__overlay} ${isOpen ? styles['sidebar__overlay--open'] : ''}`}
+        className={`
+          ${styles.sidebar__overlay} 
+          ${isOpen ? styles['sidebar__overlay--open'] : ''}
+        `}
         onClick={() => setIsOpen(false)}
       />
 
-      <aside className={`${styles.sidebar} ${isOpen ? styles['sidebar--open'] : ''}`}>
+      <aside className={`
+        ${styles.sidebar} 
+        ${isOpen ? styles['sidebar--open'] : ''}
+      `}>
         <div className={styles.sidebar__logo}>
           <div className={styles.sidebar__logoGroup}>
             <span className={styles.sidebar__logoIcon}>M</span>
@@ -60,16 +64,23 @@ export const Sidebar = () => {
         <nav className={styles.sidebar__menu}>
           <div className={styles.sidebar__menuTitle}>Módulos</div>
           
-          {menuItems.map((item) => (
-            <div
-              key={item.path}
-              onClick={() => handleNavigate(item.path)}
-              className={`${styles.sidebar__menuItem} ${location.pathname === item.path ? styles['sidebar__menuItem--active'] : ''}`}
-            >
-              {item.icon}
-              {item.label}
-            </div>
-          ))}
+          {MENU_ITEMS.map((item) => {
+            const isActive = location.pathname === item.path;
+            
+            return (
+              <div
+                key={item.path}
+                onClick={() => handleNavigate(item.path)}
+                className={`
+                  ${styles.sidebar__menuItem} 
+                  ${isActive ? styles['sidebar__menuItem--active'] : ''}
+                `}
+              >
+                {item.icon}
+                {item.label}
+              </div>
+            );
+          })}
         </nav>
       </aside>
     </>

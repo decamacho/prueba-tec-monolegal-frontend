@@ -21,7 +21,7 @@ export const Card = ({
     <div className={styles.card}>
       <div className={styles.card__header}>
         <h3 className={styles.card__title}>{title}</h3>
-        <div className={`${styles.card__iconWrapper} ${styles[`card__iconWrapper--${iconVariant}`]}`}>
+        <div className={`${styles['card__icon--wrapper']} ${styles[`card__icon--wrapper--${iconVariant}`]}`}>
           {icon}
         </div>
       </div>

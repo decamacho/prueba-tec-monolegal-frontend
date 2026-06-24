@@ -17,7 +17,8 @@ export const Invoice = () => {
     setStateFilter,
     isModalOpen,
     invoiceForModal,
-    cantidadRecordatorios,
+    reminderCount,
+    isSending,
     handlers,
   } = useInvoiceLogic();
 
@@ -31,6 +32,11 @@ export const Invoice = () => {
       key: 'cliente',
       title: 'Cliente',
       render: (fac) => <span className="font-semibold">{fac.nombreCliente}</span>
+    },
+    {
+      key: 'correo',
+      title: 'Correo',
+      render: (fac) => <span className="font-semibold">{fac.emailContacto}</span>
     },
     {
       key: 'monto',
@@ -57,7 +63,7 @@ export const Invoice = () => {
           return <span className="text-gray-400 pl-6">—</span>;
         }
         return (
-          <button 
+          <button
             className={styles.invoice__btnRemember}
             onClick={() => handlers.onIndividualClick(fac)}
           >
@@ -71,8 +77,8 @@ export const Invoice = () => {
   return (
     <div className={styles.invoice}>
       <ModuleHeader
-        title="Facturas" 
-        subtitle={`${filterInvoices.length} resultados`} 
+        title="Facturas"
+        subtitle={`${filterInvoices.length} resultados`}
       />
 
       <div className={styles.invoice__toolbar}>
@@ -88,20 +94,20 @@ export const Invoice = () => {
           ))}
         </div>
 
-        <button 
+        <button
           className={styles.invoice__btnMasive}
           onClick={handlers.onMasiveClick}
-          disabled={cantidadRecordatorios === 0}
-          style={{ opacity: cantidadRecordatorios === 0 ? 0.5 : 1, cursor: cantidadRecordatorios === 0 ? 'not-allowed' : 'pointer' }}
+          disabled={reminderCount === 0}
+          style={{ opacity: reminderCount === 0 ? 0.5 : 1, cursor: reminderCount === 0 ? 'not-allowed' : 'pointer' }}
         >
-          <SendOutlined /> Enviar recordatorios ({cantidadRecordatorios})
+          <SendOutlined /> Enviar recordatorios ({reminderCount})
         </button>
       </div>
 
-      <Table 
-        columns={columns} 
-        data={isError ? [] : filterInvoices} 
-        isLoading={isLoading} 
+      <Table
+        columns={columns}
+        data={isError ? [] : filterInvoices}
+        isLoading={isLoading}
       />
 
       <ReminderModal
@@ -109,6 +115,7 @@ export const Invoice = () => {
         onClose={handlers.onCloseModal}
         onConfirm={handlers.onConfirmSend}
         facturas={invoiceForModal}
+        isSending={isSending}
       />
     </div>
   );

@@ -16,6 +16,11 @@
   gap: var(--space-6);
 }
 
+.dashboard__messageSending {
+  padding: var(--space-8);
+  text-align: center;
+}
+
 @media (min-width: 768px) {
   .dashboard__statsGrid {
     grid-template-columns: repeat(2, 1fr);
@@ -25,9 +30,5 @@
 @media (min-width: 1024px) {
   .dashboard__statsGrid {
     grid-template-columns: repeat(4, 1fr);
-  }
-  
-  .dashboard__contentGrid {
-    grid-template-columns: 1fr;
   }
 }

@@ -43,7 +43,7 @@
   color: var(--color-text-main);
 }
 
-.table__infoLoad {
+.table__info--load {
   padding: var(--space-4);
   text-align: center;
   font-size: var(--text-sm);

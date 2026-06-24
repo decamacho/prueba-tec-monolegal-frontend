@@ -26,7 +26,7 @@
   margin: 0;
 }
 
-.card__iconWrapper {
+.card__icon--wrapper {
   width: 32px;
   height: 32px;
   border-radius: var(--radius-sm);
@@ -36,10 +36,10 @@
   font-size: var(--text-lg);
 }
 
-.card__iconWrapper--primary { background-color: #eef2ff; color: #3b5ee6; }
-.card__iconWrapper--warning { background-color: var(--color-warning-bg); color: var(--color-warning-text); }
-.card__iconWrapper--danger { background-color: var(--color-danger-bg); color: var(--color-danger-text); }
-.card__iconWrapper--success { background-color: var(--color-success-bg); color: var(--color-success-text); }
+.card__icon--wrapper--primary { background-color: #eef2ff; color: #3b5ee6; }
+.card__icon--wrapper--warning { background-color: var(--color-warning-bg); color: var(--color-warning-text); }
+.card__icon--wrapper--danger { background-color: var(--color-danger-bg); color: var(--color-danger-text); }
+.card__icon--wrapper--success { background-color: var(--color-success-bg); color: var(--color-success-text); }
 
 .card__body {
   display: flex;

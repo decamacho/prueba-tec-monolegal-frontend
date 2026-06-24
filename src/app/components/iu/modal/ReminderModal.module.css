@@ -1,4 +1,4 @@
-.overlay {
+.reminderModal {
   position: fixed;
   top: 0;
   left: 0;
@@ -14,7 +14,7 @@
   box-sizing: border-box;
 }
 
-.modal {
+.reminderModal__content {
   background-color: var(--color-bg-surface);
   border-radius: var(--radius-lg);
   width: 100%;
@@ -23,7 +23,7 @@
   flex-direction: column;
 }
 
-.modal__header {
+.reminderModal__header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -31,13 +31,13 @@
   border-bottom: 1px solid var(--color-border);
 }
 
-.modal__headerContent {
+.reminderModal__headerContent {
   display: flex;
   align-items: center;
   gap: var(--space-3);
 }
 
-.modal__iconBox {
+.reminderModal__iconBox {
   width: 36px;
   height: 36px;
   background-color: var(--color-success-bg);
@@ -49,24 +49,24 @@
   font-size: var(--text-lg);
 }
 
-.modal__titleGroup {
+.reminderModal__titleGroup {
   display: flex;
   flex-direction: column;
 }
 
-.modal__title {
+.reminderModal__title {
   font-size: var(--text-base);
   font-weight: var(--font-bold);
   color: var(--color-text-main);
   margin: 0;
 }
 
-.modal__subtitle {
+.reminderModal__subtitle {
   font-size: var(--text-xs);
   color: var(--color-text-muted);
 }
 
-.modal__closeBtn {
+.reminderModal__closeBtn {
   background: transparent;
   border: none;
   color: var(--color-text-muted);
@@ -75,20 +75,20 @@
   padding: var(--space-1);
 }
 
-.modal__body {
+.reminderModal__body {
   padding: var(--space-4);
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
 }
 
-.modal__instruction {
+.reminderModal__instruction {
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   margin: 0;
 }
 
-.modal__list {
+.reminderModal__list {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
@@ -97,9 +97,20 @@
   padding-right: var(--space-2);
 }
 
-.modal__list::-webkit-scrollbar { width: 6px; }
-.modal__list::-webkit-scrollbar-track { background: transparent; }
-.modal__list::-webkit-scrollbar-thumb { background-color: var(--color-border); border-radius: 4px; }
+.reminderModal__list::-webkit-scrollbar { width: 6px; }
+.reminderModal__list::-webkit-scrollbar-track { background: transparent; }
+.reminderModal__list::-webkit-scrollbar-thumb { background-color: var(--color-border); border-radius: 4px; }
+
+.reminderModal__footer {
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--space-3);
+  background-color: #fafbfc;
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+}
 
 .invoiceItem {
   display: flex;
@@ -130,17 +141,6 @@
   margin-top: 4px;
 }
 
-.modal__footer {
-  padding: var(--space-4);
-  border-top: 1px solid var(--color-border);
-  display: flex;
-  flex-direction: column-reverse;
-  gap: var(--space-3);
-  background-color: #fafbfc;
-  border-bottom-left-radius: var(--radius-lg);
-  border-bottom-right-radius: var(--radius-lg);
-}
-
 .btn {
   padding: var(--space-3) var(--space-5);
   border-radius: var(--radius-md);
@@ -167,34 +167,34 @@
 }
 
 @media (min-width: 768px) {
-  .modal {
+  .reminderModal__content {
     width: 90%;
     max-width: 500px;
   }
 
-  .modal__header {
+  .reminderModal__header {
     padding: var(--space-5) var(--space-6);
   }
 
-  .modal__iconBox {
+  .reminderModal__iconBox {
     width: 40px;
     height: 40px;
     font-size: var(--text-xl);
   }
 
-  .modal__title {
+  .reminderModal__title {
     font-size: var(--text-lg);
   }
 
-  .modal__subtitle {
+  .reminderModal__subtitle {
     font-size: var(--text-sm);
   }
 
-  .modal__body {
+  .reminderModal__body {
     padding: var(--space-6);
   }
 
-  .modal__list {
+  .reminderModal__list {
     max-height: 240px;
   }
 
@@ -203,7 +203,7 @@
     padding: var(--space-3) var(--space-4);
   }
 
-  .modal__footer {
+  .reminderModal__footer {
     padding: var(--space-4) var(--space-6);
     flex-direction: row;
     justify-content: flex-end;

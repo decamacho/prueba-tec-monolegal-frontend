@@ -37,7 +37,7 @@
   flex-shrink: 0;
 }
 
-.card__titleGroup {
+.card__title--group {
   display: flex;
   flex-direction: column;
 }
@@ -62,16 +62,13 @@
   gap: 4px;
 }
 
-.card__contactRow {
+.card__row--contact {
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   display: flex;
   gap: var(--space-1);
 }
 
-.card__contactLabel {
-  color: var(--color-text-main);
-}
 
 .card__footer {
   display: flex;
@@ -83,7 +80,7 @@
   gap: var(--space-3);
 }
 
-.card__statsGroup {
+.card__stats--group {
   display: flex;
   align-items: center;
   gap: var(--space-4);
@@ -95,41 +92,16 @@
   align-items: center;
 }
 
-.card__statLabel {
+.card__label--stat {
   font-size: var(--text-xs);
   color: var(--color-text-muted);
   margin-bottom: 2px;
 }
 
-.card__statValue {
+.card__value--stat {
   font-size: var(--text-base);
   font-weight: var(--font-bold);
   color: var(--color-text-main);
-}
-
-.card__divider {
-  width: 1px;
-  height: 24px;
-  background-color: var(--color-border);
-}
-
-.card__link {
-  color: var(--color-primary);
-  font-size: var(--text-sm);
-  font-weight: var(--font-medium);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  transition: opacity 0.2s;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-}
-
-.card__link:hover {
-  opacity: 0.8;
 }
 
 @media (min-width: 768px) {

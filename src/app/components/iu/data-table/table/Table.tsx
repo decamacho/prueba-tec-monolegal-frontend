@@ -1,3 +1,4 @@
+import { LoadMessage } from '../../load-message/LoadMessage';
 import styles from './Table.module.css';
 
 export interface Column<T> {
@@ -14,11 +15,11 @@ interface TableProps<T> {
 
 export const Table = <T,>({ data, columns, isLoading }: TableProps<T>) => {
   if (isLoading) {
-    return <div className={styles.table__infoLoad}>Cargando datos...</div>;
+    return <LoadMessage message={'Cargando datos...'}/>
   }
 
   if (!data || data.length === 0) {
-    return <div className={styles.table__infoLoad}>No hay datos para mostrar.</div>;
+    return <div className={styles['table__info--load']}>No hay datos para mostrar.</div>;
   }
 
   return (
