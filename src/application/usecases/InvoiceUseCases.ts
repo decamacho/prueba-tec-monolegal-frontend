@@ -11,18 +11,6 @@ export class InvoiceUseCases {
     return await this.repository.getSummary();
   }
 
-  async getClients() {
-    return await this.repository.getClients();
-  }
-
-  async getByClient(documento: string) {
-    return await this.repository.getByClient(documento);
-  }
-
-  async getItems() {
-    return await this.repository.getItems();
-  }
-
   async processBatchReminders() {
     return await this.repository.processBatchReminders();
   }

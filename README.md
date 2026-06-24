@@ -1,73 +1,45 @@
-# React + TypeScript + Vite
+# Prueba Técnica Monolegal Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación Single Page Application (SPA) responsiva y moderna construida con **React**, **TypeScript** y **Vite**, encargada de gestionar y visualizar el panel de recordatorios de facturación. 
 
-Currently, two official plugins are available:
+Desarrollada bajo el paradigma de **Arquitectura Hexagonal (Clean Architecture en Frontend)**, asegurando que la lógica de negocio y consumo de APIs esté completamente aislada de la capa de renderizado (UI).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Características de Diseño y UI
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Mobile First:** Diseñada para ofrecer una experiencia perfecta en dispositivos móviles, escalando progresivamente a resoluciones de escritorio.
+* **Diseño Limpio y Minimalista:** Enfocado en la usabilidad y la legibilidad de la información financiera.
+* **Identidad Corporativa:** Uso estricto de variables CSS globales inyectadas en la raíz (`:root`) para mantener los colores de la marca (Primary: `#9ecb24`, Fondos oscuros: `#111111`).
+* **Metodología BEM:** Estructuración de las clases CSS siguiendo el estándar *Block Element Modifier* combinado con TailwindCSS para un mantenimiento predecible y encapsulado de los componentes.
+* **Procesos Asíncronos Robustos:** Manejo global de estados de carga, *loaders* y captura de excepciones desde un cliente HTTP centralizado para dar feedback instantáneo al usuario sin romper la interfaz.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Arquitectura Hexagonal
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+El proyecto evita el anti-patrón de acoplar llamadas HTTP directamente dentro de los componentes de React. Está dividido en:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1.  **Capa de Dominio (`/src/domain`):** Contiene las entidades puras de TypeScript (`Client`, `InvoiceSummary`) y los contratos/interfaces (`IInvoiceRepository`). No conoce la existencia de React, DOM o la Fetch API.
+2.  **Capa de Infraestructura (`/src/infrastructure`):** Implementa el cliente HTTP genérico (`httpClient.ts`) con tipado estricto y el formateo de `ApiResponse<T>`. Aquí vive la implementación concreta del repositorio `invoiceRepository.ts`.
+3.  **Capa de Presentación (`/src/presentation`):** Componentes React, hooks (custom hooks) y estilos. Consume los datos invocando las abstracciones de la capa de infraestructura.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Requisitos Previos
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+* **Node.js** (v18.0 o superior)
+* **Gestor de paquetes:** `pnpm` (Este proyecto utiliza `pnpm` para instalaciones deterministas más eficientes y rápidas).
+* *Tener el Backend API de Monolegal corriendo localmente o accesible mediante un túnel público.*
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## Guía Rápida de Instalación (Quick Start)
+
+Sigue estos pasos para correr el repositorio en tu máquina local. **Nota:** Asegúrate de no borrar ni ignorar el archivo `pnpm-lock.yaml`.
+
+### 1. Clonar el repositorio
+Clona la solución completa y ubícate en la carpeta del frontend:
+```bash
+git clone https://github.com/decamacho/prueba-tec-monolegal-frontend.git
+cd prueba-tec-monolegal-frontend

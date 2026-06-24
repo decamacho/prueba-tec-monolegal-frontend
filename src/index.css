@@ -2,6 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Colores */
+  --color-primary: #9ecb24;       
+  --color-primary-hover: #88b01e;
+  
+  --color-sidebar-bg: #111111;    
+  --color-sidebar-hover: #222222;
+  --color-sidebar-text: #8a8a8a;
+  --color-sidebar-text-active: #ffffff;
+
+  /* Fondos y superficies */
+  --color-bg-app: #f4f6f8;        
+  --color-bg-surface: #ffffff;    
+
+  /* Textos y bordes */
+  --color-text-main: #1a1a1a;
+  --color-text-muted: #64748b;
+  --color-border: #e2e8f0;
+
+  /* Estados (Badges) */
+  --color-success-bg: #eaf5ce;
+  --color-success-text: #4a660a;
+  --color-warning-bg: #fff8eb;
+  --color-warning-text: #b36b00;
+  --color-danger-bg: #fee2e2;
+  --color-danger-text: #991b1b;
+
+ /* Tipografica */
+  --font-family-base: 'Inter', system-ui, sans-serif;
+  
+  /* Tamaños */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 1.875rem;  /* 30px */
+
+  /* Borde texto */
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* Espacios */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px  */
+  --space-12: 3rem;    /* 48px */
+
+  /* bordes y sombras */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+  --shadow-hover: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -1px rgba(0,0,0,0.04);
+}
+
 body {
-  background-color: #f3f4f6;
+  background-color: var(--color-bg-app);
+  color: var(--color-text-main);
+  font-family: var(--font-family-base);
+  font-size: var(--text-base);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-main);
+  margin-top: 0;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
 }
