@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import type { InvoiceSummary } from "../../../domain/entities/InvoiceSummary";
 import { useInvoiceSummary } from "../invoice/useInvoices";
 import { useClients } from "../client/useClients";
+import { INVOICE_STATES, STATUS_MAP } from "../../../domain/enums/InvoiceState";
 
 export interface ResumeInvoice {
   id: string;
@@ -24,11 +25,11 @@ export const useDashboardLogic = () => {
     invoices.forEach((fac: InvoiceSummary) => {
       const status = fac.estadoActual?.toLowerCase() || "";
 
-      if (status.includes("segundorecordatorio")) {
+      if (status.includes(INVOICE_STATES.SECOND_REMINDER)) {
         secondReminderInvoices += 1;
-      } else if (status.includes("primerrecordatorio")) {
+      } else if (status.includes(INVOICE_STATES.FIRST_REMINDER)) {
         firstReminderInvoices += 1;
-      } else if (status.includes("desactivado")) {
+      } else if (status.includes(INVOICE_STATES.INACTIVE)) {
         inactiveInvoices += 1;
       }
     });
@@ -48,23 +49,16 @@ export const useDashboardLogic = () => {
   }).format(new Date());
 
   const latestInvoices: ResumeInvoice[] = useMemo(() => {
-    const recentInvoices = invoices.slice(0, 4);
-
-    return recentInvoices.map((invoice: InvoiceSummary) => {
-      let visualStatus = "1er Recordatorio";
-      let cssClass = "primer";
+    return invoices.slice(0, 4).map((invoice: InvoiceSummary) => {
       const backendStatus = invoice.estadoActual?.toLowerCase() || "";
 
-      if (backendStatus.includes("primerrecordatorio")) {
-        visualStatus = "1er Recordatorio";
-        cssClass = "primer";
-      } else if (backendStatus.includes("segundorecordatorio")) {
-        visualStatus = "2do Recordatorio";
-        cssClass = "segundo";
-      } else if (backendStatus.includes("desactivado")) {
-        visualStatus = "Desactivado";
-        cssClass = "desactivado";
-      }
+      const stateKey = Object.values(INVOICE_STATES).find((state) =>
+        backendStatus.includes(state),
+      );
+
+      const config = stateKey
+        ? STATUS_MAP[stateKey]
+        : { visual: "Desconocido", remember: "default" };
 
       const amountFormatted = new Intl.NumberFormat("es-CO", {
         style: "currency",
@@ -76,8 +70,8 @@ export const useDashboardLogic = () => {
         id: invoice.codigoFactura,
         clientName: invoice.nombreCliente,
         amountFormatted,
-        visualStatus,
-        cssClass,
+        visualStatus: config.visual,
+        cssClass: config.remember,
       };
     });
   }, [invoices]);

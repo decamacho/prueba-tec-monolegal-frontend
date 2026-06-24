@@ -1,7 +1,12 @@
 import { useState, useMemo } from "react";
 import type { InvoiceSummary } from "../../../domain/entities/InvoiceSummary";
 import type { FacturaModalItem } from "../../components/iu/modal/ReminderModal";
-import { useInvoiceSummary, useProcessMasiveReminders, useProcessSingleReminder } from "./useInvoices";
+import {
+  useInvoiceSummary,
+  useProcessMasiveReminders,
+  useProcessSingleReminder,
+} from "./useInvoices";
+import { STATUS_MAP } from "../../../domain/enums/InvoiceState";
 export interface InvoiceView extends InvoiceSummary {
   stateRemember: "ninguno" | "primer" | "segundo" | "desactivado";
   visualState: string;
@@ -9,8 +14,10 @@ export interface InvoiceView extends InvoiceSummary {
 
 export const useInvoiceLogic = () => {
   const { data: dataInvoice = [], isLoading, isError } = useInvoiceSummary();
-  const { mutate: sendMasiveReminders, isPending: isSendingMasive } = useProcessMasiveReminders();
-  const { mutate: sendSingleReminder, isPending: isSendingSingle } = useProcessSingleReminder();
+  const { mutate: sendMasiveReminders, isPending: isSendingMasive } =
+    useProcessMasiveReminders();
+  const { mutate: sendSingleReminder, isPending: isSendingSingle } =
+    useProcessSingleReminder();
 
   const [stateFilter, setStateFilter] = useState("Todas");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,26 +36,15 @@ export const useInvoiceLogic = () => {
 
   const transformInvoice: InvoiceView[] = useMemo(() => {
     return dataInvoice.map((invoice: InvoiceSummary) => {
-      let visualState = "Pendiente";
-      let stateRemember: InvoiceView["stateRemember"] = "ninguno";
-
       const stateReal = invoice.estadoActual?.toLowerCase() || "";
 
-      if (stateReal.includes("primerrecordatorio")) {
-        visualState = "1er Recordatorio";
-        stateRemember = "primer";
-      } else if (stateReal.includes("segundorecordatorio")) {
-        visualState = "2do Recordatorio";
-        stateRemember = "segundo";
-      } else if (stateReal.includes("desactivado")) {
-        visualState = "Desactivada";
-        stateRemember = "desactivado";
-      }
+      const config = STATUS_MAP[stateReal as keyof typeof STATUS_MAP];
 
       return {
         ...invoice,
-        visualState,
-        stateRemember,
+        visualState: config?.visual || "Pendiente",
+        stateRemember:
+          (config?.remember as InvoiceView["stateRemember"]) || "ninguno",
       };
     });
   }, [dataInvoice]);
@@ -82,7 +78,7 @@ export const useInvoiceLogic = () => {
     if (invoiceForModal.length === 0) return;
 
     if (invoiceForModal.length === 1) {
-      const invoiceId = invoiceForModal[0].id || '';
+      const invoiceId = invoiceForModal[0].id || "";
 
       sendSingleReminder(invoiceId, {
         onSuccess: () => {

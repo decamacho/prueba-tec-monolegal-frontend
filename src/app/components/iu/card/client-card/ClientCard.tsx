@@ -34,14 +34,14 @@ export const ClientCard = (props: ClientCardProps) => {
         <div className={styles['card__stats--group']}>
           <div className={styles.card__stat}>
             <span className={styles['card__label--stat']}>Facturas</span>
-            <span className={styles['card__value--stat']}>{props.sumaFacturas}</span>
+            <span className={styles['card__value--stat']}>{props.numeroFacturas}</span>
           </div>
 
           <div className={styles.card__divider}></div>
 
           <div className={styles.card__stat}>
             <span className={styles['card__label--stat']}>Total compras</span>
-            <span className={styles['card__value--stat']}>{props.numeroFacturas}</span>
+            <span className={styles['card__value--stat']}>{props.sumaFacturas}</span>
           </div>
         </div>
       </div>
